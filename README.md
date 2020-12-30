@@ -5,9 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Steps to run Notes app:
 
-Clone the repo.
-Open the project folder in terminal.
-Run 'npm install'.
+Clone the repo.\
+Open the project folder in terminal.\
+Run 'npm install'.\
 Run 'npm run start'.
 
 ## Available Scripts
