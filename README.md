@@ -1,6 +1,7 @@
 # Getting Started with Notes app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). You will be shown a login screen. You can view list of notes, create new notes and delete created note, once you login.
+This is a demo project to create notes. You will be shown a login screen. You can view list of notes, create new notes and delete created note, once you login.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
