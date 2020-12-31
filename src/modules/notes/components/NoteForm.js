@@ -3,13 +3,10 @@ import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 import React from 'react';
 import * as Yup from 'yup';
-import { createNote } from '../../../actions';
 
 import { useStyle } from '../../../style';
-
 import { TextField } from '../../utility';
 import { FormLayout } from '../../utility';
-import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 const schema = (requiredMessage) => {
@@ -19,7 +16,7 @@ const schema = (requiredMessage) => {
   });
 };
 
-const CreateNewNote = (props) => {
+const NoteForm = (props) => {
   const classes = useStyle();
   const { data, cancel } = props;
   const history = useHistory();
@@ -33,7 +30,7 @@ const CreateNewNote = (props) => {
       <Formik
         initialValues={{ title: data?.title ?? '', text: data?.text ?? '' }}
         onSubmit={(values, actions) => {
-          props.createNote(values);
+          props.submit(values);
           history.push('/');
         }}
         validationSchema={schema('Required')}
@@ -44,7 +41,7 @@ const CreateNewNote = (props) => {
               <CardHeader
                 title={
                   <Typography variant="h6" className={classes.title}>
-                    Add note
+                    {props.title}
                   </Typography>
                 }
                 className={classes.cardHeader}
@@ -111,12 +108,12 @@ const CreateNewNote = (props) => {
   );
 };
 
-CreateNewNote.defaultProps = {
+NoteForm.defaultProps = {
   data: {},
 };
 
-CreateNewNote.propTypes = {
-  createNote: PropTypes.func,
+NoteForm.propTypes = {
+  data: PropTypes.object,
 };
 
-export default connect(null, { createNote })(CreateNewNote);
+export default NoteForm;

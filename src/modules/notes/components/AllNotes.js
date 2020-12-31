@@ -14,9 +14,11 @@ import { connect } from 'react-redux';
 
 import { fetchNotes, deleteNote } from '../../../actions';
 import { Login } from '../../login';
+import { useHistory } from 'react-router-dom';
 
 const AllNotes = (props) => {
   const { auth } = props;
+  const history = useHistory();
   useEffect(() => {
     props.fetchNotes();
   }, [auth]);
@@ -39,8 +41,8 @@ const AllNotes = (props) => {
             <div>No notes</div>
           ) : (
             props.notes.map((note) => (
-              <Grid item xs={12} sm={4} lg={3}>
-                <Card>
+              <Grid key={note.id} item xs={12} sm={4} lg={3}>
+                <Card key={note.id}>
                   <CardHeader
                     avatar={<Avatar aria-label="NoteTitle">N</Avatar>}
                     title={note.title}
@@ -54,8 +56,16 @@ const AllNotes = (props) => {
                       {note.text}
                     </Typography>
                   </CardContent>
-
                   <CardActions>
+                    <Button
+                      onClick={() => {
+                        history.push(`/note/edit/${note.id}`);
+                      }}
+                      size="small"
+                      color="primary"
+                    >
+                      Edit
+                    </Button>
                     <Button
                       onClick={() => {
                         props?.deleteNote(note.id);
